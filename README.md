@@ -1,6 +1,7 @@
 # CodeAssignment
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.6.
+It is assumed that a authenticated admin user is logged in, and has access to these methods.
+Authenticated user can add teams, drag and drop them into the fixture tables and reposition their placement in the leader boards array.
 
 ## Development server
 
