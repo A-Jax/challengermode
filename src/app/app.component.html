@@ -1,0 +1,188 @@
+<div class="container-fluid">
+  <div class="row">
+    <div id="sidebar" class="col-md-3">
+      <button class="btn btn-info btn-block mt-3" data-toggle="modal" data-target="#exampleModal">Add Team</button>
+      <h5 class="mt-2">Teams</h5>
+      <div class="col-md-12 mx-auto">
+        <div class="panel panel-warning">
+          <div class="panel-body" dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="listTeams">
+            <ul class="list-group">
+              <li *ngFor="let item of listTeams; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{item}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <h5 class="mt-2">LeaderBoards</h5>
+      <div class="col-md-12 mx-auto">
+        <div class="panel panel-warning" dnd-sortable-container [sortableData]="sourceList" [dropZones]="['source-dropZone']">
+          <div class="panel-body">
+            <ul class="list-group">
+              <li (contextmenu)="onRightClick($event)" *ngFor="let source of sourceList; let x = index" class="list-group-item" dnd-sortable
+                [sortableIndex]="x" [dragEnabled]="true" [dragData]="source">{{source.name}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--  -->
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Add Team</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <input [(ngModel)]="teamName" name="teamName" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+            placeholder="Enter Team Name">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-info" (click)="addTeam((teamName))">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <h5>Round 1</h5>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2 mx-auto">
+      <div class="card" dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="slotOne" style="width: 100%;">
+        <div *ngFor="let item of slotOne; let i = index" class="list-group-item card-body" dnd-sortable [sortableIndex]="i">
+          {{item}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2 mx-auto">
+      <div class="card" dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="slotTwo" style="width: 100%;">
+        <div *ngFor="let item of slotTwo; let i = index" class="list-group-item card-body" dnd-sortable [sortableIndex]="i">
+          {{item}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2 mx-auto">
+      <div class="card" dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="slotThree" style="width: 100%;">
+        <div *ngFor="let item of slotThree; let i = index" class="list-group-item card-body" dnd-sortable [sortableIndex]="i">
+          {{item}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2 mx-auto">
+      <div class="card" dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="slotFour" style="width: 100%;">
+        <div *ngFor="let item of slotFour; let i = index" class="list-group-item card-body" dnd-sortable [sortableIndex]="i">
+          {{item}}
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <!-- next section -->
+  <div class="row">
+    <div class="col-md-12">
+      <hr>
+      <h5>Round 2</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 mx-auto">
+      <div class="card" dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="slotFive" style="width: 100%;">
+        <div *ngFor="let item of slotFive; let i = index" class="list-group-item card-body" dnd-sortable [sortableIndex]="i">
+          {{item}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2 mx-auto">
+      <div class="card" dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="slotSix" style="width: 100%;">
+        <div *ngFor="let item of slotSix; let i = index" class="list-group-item card-body" dnd-sortable [sortableIndex]="i">
+          {{item}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2 mx-auto">
+      <div class="card" dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="slotSeven" style="width: 100%;">
+        <div *ngFor="let item of slotSeven; let i = index" class="list-group-item card-body" dnd-sortable [sortableIndex]="i">
+          {{item}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2 mx-auto">
+      <div class="card" dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="slotEight" style="width: 100%;">
+        <div *ngFor="let item of slotEight; let i = index" class="list-group-item card-body" dnd-sortable [sortableIndex]="i">
+          {{item}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <hr>
+      <h5>Round 3</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 mx-auto">
+      <div class="card" dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="slotNine" style="width: 100%;">
+        <div *ngFor="let item of slotNine; let i = index" class="list-group-item card-body" dnd-sortable [sortableIndex]="i">
+          {{item}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2 mx-auto">
+      <div class="card" dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="slotTen" style="width: 100%;">
+        <div *ngFor="let item of slotTen; let i = index" class="list-group-item card-body" dnd-sortable [sortableIndex]="i">
+          {{item}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <hr>
+      <h5>Final</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 mx-auto">
+      <div class="card" dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="slotEleven" style="width: 100%;">
+        <div *ngFor="let item of slotEleven; let i = index" class="list-group-item card-body" dnd-sortable [sortableIndex]="i">
+          {{item}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div id="mobileLeaderBoards">
+      <h5 class="mt-2">LeaderBoards</h5>
+      <div class="col-md-12 mx-auto">
+        <div class="panel panel-warning" dnd-sortable-container [sortableData]="sourceList" [dropZones]="['source-dropZone']">
+          <div class="panel-body">
+            <ul class="list-group">
+              <li *ngFor="let source of sourceList; let x = index" class="list-group-item" dnd-sortable [sortableIndex]="x" [dragEnabled]="true"
+                [dragData]="source">{{source.name}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
